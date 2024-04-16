@@ -1,5 +1,5 @@
 import express from "express";
-import rootRouter from "./routes";
+import rootRouter from "./routes/index.js";
 import cors from "cors";
 import jwt from "jsonwebtoken";
 import bodyParser from "body-parser";
@@ -11,4 +11,4 @@ app.use(express.json());
 
 app.use("/api/v1", rootRouter);
 
-app.listen(port, () => console.log("listing on prompt", port));
+app.listen(port, () => console.log("listing on port", port));
