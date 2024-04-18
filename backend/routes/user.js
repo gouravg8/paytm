@@ -1,6 +1,6 @@
 import express from "express";
 import { userSignup, userLogin, userUpdate } from "../schema/authValidation.js";
-import User from "../db.js";
+import { User } from "../db.js";
 const router = express.Router();
 import { JWT_SECRET } from "../config.js";
 import jwt from "jsonwebtoken";
