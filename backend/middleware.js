@@ -1,16 +1,14 @@
-import jwt, { JsonWebTokenError } from "jsonwebtoken";
-import { JWT_SECRET } from "./config";
-import User from "./db";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "./config.js";
 
-export default function authMiddleware(req, res, next) {
+async function authMiddleware(req, res, next) {
   const authHeader = req.headers.authorization;
 
-  const user = User.findOne({ token: req.token });
-  if (!authHeader || !authHeader.startWith("Bearer ")) {
+  if (!authHeader) {
     return res.status(403).json({});
   }
 
-  const token = token.split(" ")[1];
+  const token = authHeader.split(" ")[1];
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
@@ -20,3 +18,5 @@ export default function authMiddleware(req, res, next) {
     return res.status(403).json({});
   }
 }
+
+export default authMiddleware;

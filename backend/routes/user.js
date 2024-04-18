@@ -53,7 +53,7 @@ router.post("/signin", authMiddleware, async (req, res) => {
     { username: username, password: password },
     (err, user) => {
       if (err) res.status(411).json({ message: "Error while loggin in" });
-      console.log(user);
+      // console.log(user);
     }
   );
 
@@ -75,7 +75,7 @@ router.put("/", authMiddleware, async (req, res) => {
     { ...body },
     (err, user) => {
       if (err) res.send(411).json({ message: "error while updating info" });
-      console.log(user);
+      // console.log(user);
     }
   );
   res.status(200).json({ message: "Updated successfully" });
