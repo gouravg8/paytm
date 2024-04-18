@@ -1,4 +1,14 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+
+const MONGO_STRING = process.env.MONGO_STRING;
+// console.log(MONGO_STRING);
+async function main() {
+  await mongoose.connect(MONGO_STRING);
+}
+
+main().then((res) => console.log("mongo connected"));
 
 // Create a Schema for Users
 const userSchema = new mongoose.Schema({
