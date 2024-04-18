@@ -4,6 +4,7 @@ import User from "../db.js";
 const router = express.Router();
 import { JWT_SECRET } from "../config.js";
 import jwt from "jsonwebtoken";
+import authMiddleware from "../middleware.js";
 
 router.post("/signup", async (req, res) => {
   const { success } = userSignup.safeParse(req.body);
@@ -36,7 +37,7 @@ router.post("/signup", async (req, res) => {
   res.json({ message: "User created successfully", token: token });
 });
 
-router.post("/signin", async (req, res) => {
+router.post("/signin", authMiddleware, async (req, res) => {
   const { username, password } = req.body;
   const { success } = userLogin.safeParse({ username, password });
 
