@@ -1,6 +1,6 @@
 import express from "express";
 import { userSignup, userLogin, userUpdate } from "../schema/authValidation.js";
-import { User } from "../db.js";
+import { Account, User } from "../db.js";
 const router = express.Router();
 import { JWT_SECRET } from "../config.js";
 import jwt from "jsonwebtoken";
@@ -24,8 +24,14 @@ router.post("/signup", async (req, res) => {
       .json({ message: "Email isalready taken/ incorrect inputs" });
 
   const user = await User.create({ username, password, firstName, lastName });
-
   const userId = user._id;
+
+  // -------------create a new account ----------
+
+  const account = await Account.create({
+    userId,
+    balance: Math.random() * 10000 + 1,
+  });
 
   const token = jwt.sign(
     {
