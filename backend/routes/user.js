@@ -1,5 +1,5 @@
 import express from "express";
-import { userSignup, userLogin } from "../schema/authValidation.js";
+import { userSignup, userLogin, userUpdate } from "../schema/authValidation.js";
 import User from "../db.js";
 const router = express.Router();
 import { JWT_SECRET } from "../config.js";
@@ -56,6 +56,23 @@ router.post("/signin", authMiddleware, async (req, res) => {
   const token = jwt.verify(userId, JWT_SECRET);
 
   res.json({ token: token });
+});
+
+router.put("/", authMiddleware, async (req, res) => {
+  const body = req.body;
+
+  const { success } = userUpdate.safeParse({ ...body });
+  if (!success) res.status(411).json({ message: "password is too small" });
+
+  const user = await User.findOneAndUpdate(
+    { ...body },
+    { ...body },
+    (err, user) => {
+      if (err) res.send(411).json({ message: "error while updating info" });
+      console.log(user);
+    }
+  );
+  res.status(200).json({ message: "Updated successfully" });
 });
 
 export default router;
