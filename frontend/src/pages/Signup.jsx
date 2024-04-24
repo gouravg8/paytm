@@ -25,24 +25,32 @@ const Signup = () => {
           key={"SignupInput"}
           placeholder={"John"}
           type={"text"}
+          value={firstName}
+          setValue={setFirstName}
         />
         <Input
           label={"Last Name"}
           key={"SignupLastname"}
           placeholder={"Doe"}
           type={"text"}
+          value={lastName}
+          setValue={setLastName}
         />
         <Input
           label={"Email"}
           key={"SignupMail"}
           placeholder={"johndoe@example.com"}
           type={"email"}
+          value={email}
+          setValue={setEmail}
         />
         <Input
           label={"Password"}
           placeholder={""}
           key={"SignupPass"}
           type={"password"}
+          value={password}
+          setValue={setPassword}
         />
         <Button btnText={"Sign Up"} key={"SignupButton"} />
         <BottomWarning
