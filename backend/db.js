@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
+process.loadEnvFile();
 
 const MONGO_STRING = process.env.MONGO_STRING;
 // console.log(MONGO_STRING);
