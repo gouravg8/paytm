@@ -1,9 +1,12 @@
 import React from "react";
+import propTypes from "prop-types";
 
-const Button = ({ btnText }) => {
+const Button = ({ btnText, className }) => {
   return (
     <button
-      className="bg-gray-900 text-white text-sm py-2 px-4 rounded"
+      className={`text-sm py-2 px-4 rounded ${
+        className || "bg-gray-900 text-white"
+      }`}
       type="submit"
     >
       {btnText}
@@ -12,3 +15,7 @@ const Button = ({ btnText }) => {
 };
 
 export default Button;
+Button.propTypes = {
+  btnText: propTypes.string,
+  className: propTypes.string,
+};

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import Nav from "../components/Nav";
-import { Input } from "../components/index";
-import DbUserList from "../components/DbUserList";
+import {
+  Input,
+  Nav,
+  DbUserList,
+  Balance,
+  SendMoneyModal,
+} from "../components/index.js";
 
 const Dashboard = () => {
   const [user, setUser] = useState("Suar");
@@ -11,7 +15,7 @@ const Dashboard = () => {
     <>
       <Nav user={user} />
       <div className="px-6">
-        <h3 className="font-semibold my-2">Your balance is: {balance}</h3>
+        <Balance key={"dashboardBalance"} balance={100} />
         <Input
           label={"Users"}
           placeholder={"Search user"}
@@ -23,6 +27,7 @@ const Dashboard = () => {
         <div className="my-5">
           <DbUserList userList={["suresh", "ramesh", "mahesh"]} />
         </div>
+        <SendMoneyModal key={"d"} dbUser={"Suar"} />
       </div>
     </>
   );
