@@ -1,5 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import propTypes from "prop-types";
 
 const BottomWarning = ({ warning, to, linkText }) => {
   return (
@@ -13,3 +13,8 @@ const BottomWarning = ({ warning, to, linkText }) => {
 };
 
 export default BottomWarning;
+BottomWarning.propTypes = {
+  warning: propTypes.string,
+  to: propTypes.string,
+  linkText: propTypes.string,
+};

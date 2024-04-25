@@ -1,4 +1,4 @@
-import React from "react";
+import propTypes from "prop-types";
 
 const Input = ({ label, placeholder, value, setValue, type }) => {
   return (
@@ -18,3 +18,10 @@ const Input = ({ label, placeholder, value, setValue, type }) => {
 };
 
 export default Input;
+Input.propTypes = {
+  label: propTypes.string,
+  placeholder: propTypes.string,
+  value: propTypes.oneOfType([propTypes.string, propTypes.number]),
+  setValue: propTypes.func,
+  type: propTypes.string,
+};

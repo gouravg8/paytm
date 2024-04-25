@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Heading, Input } from "./index";
 import DbUser from "./DbUser";
 import propTypes from "prop-types";

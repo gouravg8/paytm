@@ -1,11 +1,5 @@
-import React, { useState } from "react";
-import {
-  Input,
-  Nav,
-  DbUserList,
-  Balance,
-  SendMoneyModal,
-} from "../components/index.js";
+import { useState } from "react";
+import { Input, Nav, DbUserList, Balance } from "../components/index.js";
 
 const Dashboard = () => {
   const [user, setUser] = useState("Suar");
@@ -15,7 +9,7 @@ const Dashboard = () => {
     <>
       <Nav user={user} />
       <div className="px-6">
-        <Balance key={"dashboardBalance"} balance={100} />
+        <Balance key={"dashboardBalance"} balance={balance} />
         <Input
           label={"Users"}
           placeholder={"Search user"}
@@ -27,7 +21,6 @@ const Dashboard = () => {
         <div className="my-5">
           <DbUserList userList={["suresh", "ramesh", "mahesh"]} />
         </div>
-        <SendMoneyModal key={"d"} dbUser={"Suar"} />
       </div>
     </>
   );

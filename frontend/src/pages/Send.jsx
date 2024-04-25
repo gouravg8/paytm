@@ -1,4 +1,3 @@
-import React from "react";
 import { Nav, SendMoneyModal } from "../components";
 
 const Send = () => {
