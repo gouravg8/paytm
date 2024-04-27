@@ -19,13 +19,15 @@ router.post("/signup", async (req, res) => {
   const exitingUser = await User.findOne({ username: req.body.username });
 
   if (exitingUser)
-    res
-      .status(411)
-      .json({ message: "Email isalready taken/ incorrect inputs" });
+    res.status(411).json({
+      message: "Email isalready taken/ incorrect inputs",
+    });
 
   const user = await User.create({ username, password, firstName, lastName });
   const userId = user._id;
 
+  req.session.user = req.body;
+  console.log("user created with header", req.body);
   // -------------create a new account ----------
 
   const account = await Account.create({
@@ -40,10 +42,18 @@ router.post("/signup", async (req, res) => {
     JWT_SECRET
   );
 
-  res.json({ message: "User created successfully", token: token });
+  // res.setHeader("Authorization", `Bearer ${token}`);
+
+  res.setHeader("Authorization", `Bearer ${token}`).json({
+    message: "User created successfully",
+    token: token,
+    head1: res.header,
+    head2: req.headers,
+  });
 });
 
 router.post("/signin", authMiddleware, async (req, res) => {
+  console.log(req.headers);
   const { username, password } = req.body;
   const { success } = userLogin.safeParse({ username, password });
 
