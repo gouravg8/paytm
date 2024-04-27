@@ -6,12 +6,27 @@ import {
   Input,
   Subheading,
 } from "../components";
+import axios from "axios";
 
 const Signup = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  let domain = "http://localhost:3000/api/v1/user";
+  const [firstName, setFirstName] = useState("john");
+  const [lastName, setLastName] = useState("doe");
+  const [username, setUsername] = useState(firstName + Math.floor(Math.random() * 100));
+  const [password, setPassword] = useState("john123");
+
+  const submitSignup = async (e) => {
+    e.preventDefault();
+    let signupPost = await axios.post(domain + "/signup", {
+      username,
+      password,
+      firstName,
+      lastName,
+    });
+    console.log(domain + "/signup");
+    console.log(signupPost);
+  };
+
   return (
     <div className="mx-auto w-2/3 md:w-1/2 lg:w-1/3 my-8">
       <Heading text={"Sign Up"} key={"SignupHeading"} />
@@ -19,7 +34,11 @@ const Signup = () => {
         subheading={"Enter your information to create an account"}
         key={"SignupSubheading"}
       />
-      <div className="flex flex-col gap-4 my-3">
+      <form
+        method="post"
+        onSubmit={submitSignup}
+        className="flex flex-col gap-4 my-3"
+      >
         <Input
           label={"First Name"}
           key={"SignupInput"}
@@ -37,12 +56,12 @@ const Signup = () => {
           setValue={setLastName}
         />
         <Input
-          label={"Email"}
-          key={"SignupMail"}
-          placeholder={"johndoe@example.com"}
-          type={"email"}
-          value={email}
-          setValue={setEmail}
+          label={"Username"}
+          key={"SignupUsername"}
+          placeholder={"johndoe"}
+          type={"text"}
+          value={username}
+          setValue={setUsername}
         />
         <Input
           label={"Password"}
@@ -59,7 +78,7 @@ const Signup = () => {
           linkText={"Login"}
           key={"SignupBottomWarning"}
         />
-      </div>
+      </form>
     </div>
   );
 };
