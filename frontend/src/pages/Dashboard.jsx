@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [balance, setBalance] = useState(0);
   return (
     <>
-      <Nav user={user} />
+      <Nav />
       <div className="px-6">
         <Balance key={"dashboardBalance"} balance={balance} />
         <Input

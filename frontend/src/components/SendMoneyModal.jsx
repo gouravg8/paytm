@@ -20,7 +20,7 @@ const SendMoneyModal = ({ dbUser }) => {
         <Input
           label={"Amount (in Rs)"}
           placeholder={"Enter amount"}
-          type={"number"}
+          type={'number'}
           key={"modal"}
           value={amountSend}
           setValue={setAmountSend}
